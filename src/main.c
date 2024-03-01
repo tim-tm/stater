@@ -27,6 +27,7 @@
  */
 
 #include "constants.h"
+#include <float.h>
 #include <raylib.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,12 +35,12 @@
 
 static char* task_name = NULL;
 
-static long long* data;
+static float* data;
 static long long data_count = 0;
 static long long data_size = 16;
 
-static long long data_max = -9223372036854775807; // init as min value
-static long long data_min = 9223372036854775807; // init as max value
+static float data_max = FLT_MIN; // init as min value
+static float data_min = FLT_MAX; // init as max value
 
 static void UpdateDrawFrame(void);
 
@@ -57,7 +58,7 @@ int main(int argc, char** argv) {
     }
     char line[128];
     task_name = calloc(128, sizeof(char));
-    data = calloc(data_size, sizeof(long long));
+    data = calloc(data_size, sizeof(float));
 
     for (size_t i = 0; fgets(line, sizeof(line), fp); ++i) {
         if (i == 0) {
@@ -68,12 +69,13 @@ int main(int argc, char** argv) {
         // i+1 is redundant because the first string is the title and was skipped
         if (i > data_size) {
             data_size *= 2;
-            data = realloc(data, data_size);
+            data = realloc(data, data_size*sizeof(float));
         }
 
-        data[i-1] = atoi(line);
+        data[i-1] = strtof(line, NULL);
         if (data[i-1] > data_max) {
             data_max = data[i-1];
+            printf("%f\n", data_max);
         }
         if (data[i-1] < data_min) {
             data_min = data[i-1];
@@ -100,27 +102,27 @@ static void UpdateDrawFrame(void) {
 
         const int rect_x = 5;
         const int rect_y = 45;
-        const int rect_w = 300;
-        const int rect_h = 150;
+        const int rect_w = 500;
+        const int rect_h = 250;
         DrawRectangleLines(rect_x, rect_y, rect_w, rect_h, LIGHTGRAY);
         for (size_t x = 0; x < data_count; ++x) {
-            DrawCircle(rect_x+((float)rect_w/(float)data_count)*x,
-                    rect_y+rect_h-((float)(data[x]-data_min)/(float)(data_max-data_min))*rect_h,
+            /*DrawCircle(rect_x+((float)rect_w/(float)data_count)*x,
+                    rect_y+rect_h-((data[x]-data_min)/(data_max-data_min))*rect_h,
                     3.f,
-                    LIGHTGRAY);
+                    LIGHTGRAY);*/
             DrawLineEx(
                     (Vector2){
                         rect_x+((float)rect_w/(float)data_count)*x,
-                        rect_y+rect_h-((float)(data[x]-data_min)/(float)(data_max-data_min))*rect_h
+                        rect_y+rect_h-((data[x]-data_min)/(data_max-data_min))*rect_h
                     },
                     (Vector2){
                         rect_x+((float)rect_w/(float)data_count)*(x+1),
-                        rect_y+rect_h-((float)(data[x+1]-data_min)/(float)(data_max-data_min))*rect_h
+                        rect_y+rect_h-((data[x+1]-data_min)/(data_max-data_min))*rect_h
                     },
-                    2.f,
+                    1.5f,
                     LIGHTGRAY);
         }
-        DrawText(TextFormat("Max: %i", data_max), 5, rect_y+rect_h+10, 18, LIGHTGRAY);
-        DrawText(TextFormat("Min: %i", data_min), 5, rect_y+rect_h+35, 18, LIGHTGRAY);
+        DrawText(TextFormat("Max: %.2f", data_max), 5, rect_y+rect_h+10, 18, LIGHTGRAY);
+        DrawText(TextFormat("Min: %.2f", data_min), 5, rect_y+rect_h+35, 18, LIGHTGRAY);
     EndDrawing();
 }
