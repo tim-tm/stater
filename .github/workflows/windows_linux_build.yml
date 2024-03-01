@@ -57,7 +57,7 @@ jobs:
     - name:  Install
       run:   |
              if [ "$RUNNER_OS" == "Linux" ]; then
-                  sudo apt install libxrandr-dev libxinerama-dev -y
+                  sudo apt install libxrandr-dev libxinerama-dev libxcursor-dev -y
              fi
       shell: bash
 
