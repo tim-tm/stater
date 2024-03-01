@@ -75,7 +75,6 @@ int main(int argc, char** argv) {
         data[i-1] = strtof(line, NULL);
         if (data[i-1] > data_max) {
             data_max = data[i-1];
-            printf("%f\n", data_max);
         }
         if (data[i-1] < data_min) {
             data_min = data[i-1];
@@ -92,6 +91,7 @@ int main(int argc, char** argv) {
     }
     CloseWindow();
     free(task_name);
+    free(data);
     return 0;
 }
 
