@@ -57,7 +57,7 @@ jobs:
     - name:  Install
       run:   |
              if [ "$RUNNER_OS" == "Linux" ]; then
-                  apt install libxrandr -y
+                  sudo apt install libxrandr -y
              else
                   echo "$RUNNER_OS not supported"
                   exit 1
