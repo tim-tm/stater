@@ -32,3 +32,7 @@ Running an example
 ## Contribution
 
 If you want to contribute, feel free to open a pull request.
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/tim-tm/stater/blob/main/LICENSE)
