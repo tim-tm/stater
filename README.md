@@ -17,23 +17,24 @@ Cloning the repository
 git clone https://github.com/tim-tm/stater && cd stater
 ```
 
-Configuring stater
+Setting up libraries and the project
 ```sh
-cmake -B build
+make setup
 ```
 
 Building stater
 ```sh
-cmake --build build
-```
-or
-```sh
-make -C build
+make
 ```
 
 Running an example
 ```sh
 ./build/stater examples/pacman.state
+```
+
+Installing stater system-wide
+```sh
+make install
 ```
 
 ## Contribution

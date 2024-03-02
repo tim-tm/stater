@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     task_name = calloc(128, sizeof(char));
     data = calloc(data_size, sizeof(float));
 
-    for (size_t i = 0; fgets(line, sizeof(line), fp); ++i) {
+    for (long long i = 0; fgets(line, sizeof(line), fp); ++i) {
         if (i == 0) {
             strncpy(task_name, line, 128);
             continue;
@@ -118,7 +118,7 @@ static void UpdateDrawFrame(void) {
         const int rect_w = 500;
         const int rect_h = 250;
         DrawRectangleLines(rect_x, rect_y, rect_w, rect_h, LIGHTGRAY);
-        for (size_t x = 0; x < data_count; ++x) {
+        for (long long x = 0; x < data_count; ++x) {
             /*DrawCircle(rect_x+((float)rect_w/(float)data_count)*x,
                     rect_y+rect_h-((data[x]-data_min)/(data_max-data_min))*rect_h,
                     3.f,

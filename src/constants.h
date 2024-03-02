@@ -34,6 +34,6 @@ const int g_screen_width = 800;
 const int g_screen_height = 450;
 
 // Colors (defined as macros so raylib.h does'nt need to be included)
-#define COLOR_DEFAULT_BLACK (Color){35, 35, 35}
+#define COLOR_DEFAULT_BLACK (Color){35, 35, 35, 255}
 
 #endif // !_CONSTANTS_H_
