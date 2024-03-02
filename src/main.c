@@ -135,10 +135,19 @@ static void UpdateDrawFrame(void) {
                     1.5f,
                     LIGHTGRAY);
         }
-        DrawText(TextFormat("Max: %.2f", data_max), 5, rect_y+rect_h+10, 18, LIGHTGRAY);
-        DrawText(TextFormat("Min: %.2f", data_min), 5, rect_y+rect_h+35, 18, LIGHTGRAY);
-        DrawText(TextFormat("Average: %.2f", data_average), 5, rect_y+rect_h+60, 18, LIGHTGRAY);
-        DrawText(TextFormat("Biggest difference: %.2f", data_max_diff), 5, rect_y+rect_h+85, 18, LIGHTGRAY);
-        DrawText(TextFormat("Average difference: %.2f", data_average_diff), 5, rect_y+rect_h+110, 18, LIGHTGRAY);
+        DrawText(TextFormat("%.2f", data_max), rect_x+rect_w+5, rect_y, 12, LIGHTGRAY);
+        DrawText(TextFormat("%.2f", data_min), rect_x+rect_w+5, rect_y+rect_h-11, 12, LIGHTGRAY);
+        if (data_min < 0) {
+            const float zeroY = rect_y+rect_h-((-data_min)/(data_max-data_min))*rect_h;
+            DrawText("0.00", rect_x+rect_w+5, zeroY, 12, LIGHTGRAY);
+            DrawLine(rect_x, zeroY, rect_x+rect_w, zeroY, LIGHTGRAY);
+        }
+        DrawText("0", rect_x, rect_y+rect_h+5, 12, LIGHTGRAY);
+        const char* x_axis_end = TextFormat("%i", data_count);
+        DrawText(x_axis_end, rect_x+rect_w-MeasureText(x_axis_end, 12), rect_y+rect_h+5, 12, LIGHTGRAY);
+
+        DrawText(TextFormat("Average: %.2f", data_average), rect_x, rect_y+rect_h+40, 18, LIGHTGRAY);
+        DrawText(TextFormat("Biggest difference: %.2f", data_max_diff), rect_x, rect_y+rect_h+65, 18, LIGHTGRAY);
+        DrawText(TextFormat("Average difference: %.2f", data_average_diff), rect_x, rect_y+rect_h+85, 18, LIGHTGRAY);
     EndDrawing();
 }
