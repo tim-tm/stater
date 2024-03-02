@@ -149,5 +149,36 @@ static void UpdateDrawFrame(void) {
         DrawText(TextFormat("Average: %.2f", data_average), rect_x, rect_y+rect_h+40, 18, LIGHTGRAY);
         DrawText(TextFormat("Biggest difference: %.2f", data_max_diff), rect_x, rect_y+rect_h+65, 18, LIGHTGRAY);
         DrawText(TextFormat("Average difference: %.2f", data_average_diff), rect_x, rect_y+rect_h+85, 18, LIGHTGRAY);
+        
+        // Check if the mouse is on the plot
+        // NOTE: Extract this to a seperate function if it is needed again
+        if (rect_x < GetMouseX() &&
+            rect_x+rect_w > GetMouseX() &&
+            rect_y < GetMouseY() &&
+            rect_y+rect_h > GetMouseY()) {
+            // get the hovered index using math
+            const int i = ((float)(GetMouseX()-rect_x)/(float)rect_w)*data_count;
+            const float x = rect_x+((float)rect_w/(float)data_count)*i;
+            const float y = rect_y+rect_h-((data[i]-data_min)/(data_max-data_min))*rect_h;
+            
+            // get the y coordinate of the x-Axis of the plot
+            float zero_y = rect_y+rect_h;
+            if (data_min < 0) {
+                zero_y = rect_y+rect_h-((-data_min)/(data_max-data_min))*rect_h;
+            }
+
+            // Draw a point on the x-Axis and a connection from the x-Axis to the graph
+            DrawLine(x, y, x, zero_y, RED);
+            DrawCircle(x, zero_y, 3.f, RED);
+
+            // display the current value
+            const char* value_text = TextFormat("%.2f", data[i]);
+            float text_x = x-(MeasureText(value_text, 12)/2.f);
+            // prevents first coordinate from being cut off the screen
+            if (i == 0) {
+                text_x = x;
+            }
+            DrawText(value_text, text_x, rect_y+rect_h+5, 12, RED);
+        }
     EndDrawing();
 }
