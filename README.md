@@ -1,8 +1,8 @@
 # stater
 stater (statistic-er) is a useful tool for getting an overview over pieces of data.
 
-![](https://raw.githubusercontent.com/tim-tm/stater/main/res/float_example.png)
-![](https://raw.githubusercontent.com/tim-tm/stater/main/res/pacman_example.png)
+https://github.com/tim-tm/stater/raw/main/res/float_example.mp4
+https://github.com/tim-tm/stater/raw/main/res/pacman_example.mp4
 
 ## Getting started
 
