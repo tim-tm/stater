@@ -32,6 +32,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 static char* task_name = NULL;
 
@@ -41,6 +42,9 @@ static long long data_size = 16;
 
 static float data_max = FLT_MIN; // init as min value
 static float data_min = FLT_MAX; // init as max value
+static float data_max_diff = FLT_MIN; // init as min value
+static float data_average = 0;
+static float data_average_diff = 0;
 
 static void UpdateDrawFrame(void);
 
@@ -80,8 +84,17 @@ int main(int argc, char** argv) {
             data_min = data[i-1];
         }
 
+        const float absdiff = fabs(data[i-1]-data[i-2]);
+        if (absdiff > data_max_diff) {
+            data_max_diff = absdiff;
+        }
+
         data_count = i;
+        data_average += data[i-1];
+        data_average_diff += absdiff;
     }
+    data_average /= data_count;
+    data_average_diff /= data_count;
     fclose(fp);
 
     InitWindow(g_screen_width, g_screen_height, g_app_title);
@@ -124,5 +137,8 @@ static void UpdateDrawFrame(void) {
         }
         DrawText(TextFormat("Max: %.2f", data_max), 5, rect_y+rect_h+10, 18, LIGHTGRAY);
         DrawText(TextFormat("Min: %.2f", data_min), 5, rect_y+rect_h+35, 18, LIGHTGRAY);
+        DrawText(TextFormat("Average: %.2f", data_average), 5, rect_y+rect_h+60, 18, LIGHTGRAY);
+        DrawText(TextFormat("Biggest difference: %.2f", data_max_diff), 5, rect_y+rect_h+85, 18, LIGHTGRAY);
+        DrawText(TextFormat("Average difference: %.2f", data_average_diff), 5, rect_y+rect_h+110, 18, LIGHTGRAY);
     EndDrawing();
 }
