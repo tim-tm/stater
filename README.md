@@ -1,8 +1,14 @@
 # stater
 stater (statistic-er) is a useful tool for getting an overview over pieces of data.
 
-https://github.com/tim-tm/stater/assets/43402731/4ab93baa-ddca-484f-803d-60c339f11a5c
-https://github.com/tim-tm/stater/assets/43402731/ec770de2-5a16-4844-b8a8-b88dca4c78cd
+
+
+https://github.com/tim-tm/stater/assets/43402731/9f4ca7ef-d1b5-42ba-9b8f-43291a1c8b08
+
+
+
+https://github.com/tim-tm/stater/assets/43402731/58669aa8-f534-4a7c-8ddb-6eadac2192b8
+
 
 ## Getting started
 
