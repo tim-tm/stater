@@ -12,6 +12,12 @@ https://github.com/tim-tm/stater/assets/43402731/58669aa8-f534-4a7c-8ddb-6eadac2
 
 ## Getting started
 
+### Requirements
+
+- git
+- gcc, make
+- X11 libraries
+
 Cloning the repository
 ```sh
 git clone https://github.com/tim-tm/stater && cd stater
@@ -35,6 +41,23 @@ Running an example
 Installing stater system-wide
 ```sh
 make install
+```
+
+## More Makefile options
+
+Cleaning the build directory without destroying it
+```sh
+make clean
+```
+
+Destroying the build directory and cleaning the raylib build
+```sh
+make destroy
+```
+
+Uninstalling stater from your system
+```sh
+make uninstall
 ```
 
 ## Contribution

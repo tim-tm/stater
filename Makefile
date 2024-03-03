@@ -17,9 +17,10 @@ endif
 SRC=$(wildcard $(SRCDIR)/*.c)
 OBJ=$(patsubst $(SRCDIR)/%.c, $(BUILDDIR)/%.o, $(SRC))
 
-BINARY=$(BUILDDIR)/stater
+BINARYNAME=stater
+BINARY=$(BUILDDIR)/$(BINARYNAME)
 
-.PHONY: all setup clean destroy install
+.PHONY: all setup clean destroy install uninstall
 
 all: $(BINARY)
 
@@ -40,6 +41,10 @@ clean:
 
 destroy:
 	rm -rf $(BUILDDIR)
+	make -C lib/raylib/src clean
 
 install:
 	sudo cp $(BINARY) /usr/bin/
+
+uninstall:
+	sudo rm /usr/bin/$(BINARYNAME)
