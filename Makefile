@@ -21,9 +21,15 @@ BINARYNAME=stater
 BINARY=$(BUILDDIR)/$(BINARYNAME)
 
 ifeq ($(OS), Windows_NT)
-LIBS += -lopengl32 -lgdi32 -lwinmm
+INCLUDES=-I.\\lib\\raylib\\src\\
+LIBS=-L.\\lib\\raylib\\src\\ -lraylib -lm -lopengl32 -lgdi32 -lwinmm
+
+SRCDIR=.\\src
+BUILDDIR=.\\build
 INSTALLDIR=C:\\Windows\\System32\\
+
 RM=del
+BINARYNAME=stater.exe
 BINARY=$(BUILDDIR)\\$(BINARYNAME)
 endif
 
