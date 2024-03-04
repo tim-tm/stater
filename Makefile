@@ -4,8 +4,8 @@ DEFINES=
 INCLUDES=-I./lib/raylib/src/
 LIBS=-L./lib/raylib/src/ -lraylib -lm
 
-SRCDIR=src
-BUILDDIR=build
+SRCDIR=./src
+BUILDDIR=./build
 INSTALLDIR=/usr/bin/
 
 RM=rm
