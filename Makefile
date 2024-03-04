@@ -1,17 +1,23 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -pedantic -g
+CFLAGS=-Wall -Wextra -pedantic
 DEFINES=
 INCLUDES=-I./lib/raylib/src/
 LIBS=-L./lib/raylib/src/ -lraylib -lm
 
 SRCDIR=src
 BUILDDIR=build
-RELEASEDIR=build/release
+INSTALLDIR=/usr/bin/
 
-ifeq ($(BUILD_TYPE), RELEASE)
-CFLAGS=-Wall -Wextra -pedantic
-BUILDDIR=$(RELEASEDIR)
-DEFINES=
+RM=rm
+
+ifeq ($(BUILD_TYPE), DEBUG)
+CFLAGS += -g -ggdb
+endif
+
+ifeq ($(OS), Windows_NT)
+LIBS += -lopengl32 -lgdi32 -lwinmm
+INSTALLDIR=C:/Windows/System32/
+RM=del
 endif
 
 SRC=$(wildcard $(SRCDIR)/*.c)
@@ -33,18 +39,18 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 setup:
 	git submodule update --init
 	make -C lib/raylib/src
-	mkdir -p $(RELEASEDIR)
+	mkdir -p $(BUILDDIR)
 
 clean:
-	rm -rf $(BINARY)
-	rm -rf $(OBJ)
+	$(RM) $(BINARY)
+	$(RM) $(OBJ)
 
 destroy:
-	rm -rf $(BUILDDIR)
+	$(RM) $(BUILDDIR)
 	make -C lib/raylib/src clean
 
 install:
-	sudo cp $(BINARY) /usr/bin/
+	cp $(BINARY) $(INSTALLDIR)
 
 uninstall:
-	sudo rm /usr/bin/$(BINARYNAME)
+	$(RM) $(INSTALLDIR)$(BINARYNAME)
