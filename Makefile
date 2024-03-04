@@ -14,17 +14,18 @@ ifeq ($(BUILD_TYPE), DEBUG)
 CFLAGS += -g -ggdb
 endif
 
-ifeq ($(OS), Windows_NT)
-LIBS += -lopengl32 -lgdi32 -lwinmm
-INSTALLDIR=C:/Windows/System32/
-RM=del
-endif
-
 SRC=$(wildcard $(SRCDIR)/*.c)
 OBJ=$(patsubst $(SRCDIR)/%.c, $(BUILDDIR)/%.o, $(SRC))
 
 BINARYNAME=stater
 BINARY=$(BUILDDIR)/$(BINARYNAME)
+
+ifeq ($(OS), Windows_NT)
+LIBS += -lopengl32 -lgdi32 -lwinmm
+INSTALLDIR=C:\\Windows\\System32\\
+RM=del
+BINARY=$(BUILDDIR)\\$(BINARYNAME)
+endif
 
 .PHONY: all setup clean destroy install uninstall
 
