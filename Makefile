@@ -23,13 +23,13 @@ BINARY=$(BUILDDIR)/$(BINARYNAME)
 ifeq ($(OS), Windows_NT)
 LIBS += -lopengl32 -lgdi32 -lwinmm
 
-SRCDIR=./src
-BUILDDIR=./build
-INSTALLDIR=C:/Windows/System32/
+SRCDIR=.\src
+BUILDDIR=.\build
+INSTALLDIR=C:\Windows\System32\
 
 RM=del
 BINARYNAME=stater.exe
-BINARY=$(BUILDDIR)/$(BINARYNAME)
+BINARY=$(BUILDDIR)\\$(BINARYNAME)
 endif
 
 .PHONY: all setup clean destroy install uninstall
