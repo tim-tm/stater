@@ -91,6 +91,8 @@ make install
 
 ## More Makefile options
 
+### Linux-only
+
 Cleaning the build directory without destroying it
 ```sh
 make clean
@@ -100,6 +102,8 @@ Destroying the build directory and cleaning the raylib build
 ```sh
 make destroy
 ```
+
+### Windows and Linux
 
 Uninstalling stater from your system
 ```sh

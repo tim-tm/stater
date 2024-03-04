@@ -8,8 +8,6 @@ SRCDIR=./src
 BUILDDIR=./build
 INSTALLDIR=/usr/bin/
 
-RM=rm
-
 ifeq ($(BUILD_TYPE), DEBUG)
 CFLAGS += -g -ggdb
 endif
@@ -25,7 +23,6 @@ LIBS += -lopengl32 -lgdi32 -lwinmm
 
 INSTALLDIR=C:\Windows\System32\
 
-RM=del
 BINARYNAME=stater.exe
 endif
 
@@ -45,15 +42,15 @@ setup:
 	mkdir -p $(BUILDDIR)
 
 clean:
-	$(RM) $(BINARY)
-	$(RM) $(OBJ)
+	rm -rf $(BINARY)
+	rm -rf $(OBJ)
 
 destroy:
-	$(RM) $(BUILDDIR)
+	rm -rf $(BUILDDIR)
 	make -C lib/raylib/src clean
 
 install:
 	cp $(BINARY) $(INSTALLDIR)
 
 uninstall:
-	$(RM) $(INSTALLDIR)$(BINARYNAME)
+	rm $(INSTALLDIR)$(BINARYNAME)
