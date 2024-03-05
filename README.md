@@ -14,15 +14,24 @@ https://github.com/tim-tm/stater/assets/43402731/58669aa8-f534-4a7c-8ddb-6eadac2
 
 ### Linux
 
-For now, stater cannot be installed using any package manager, you need to build it on your own.
+Arch-Linux (AUR)
+```sh
+yay -S stater-git
+```
+or
+```sh
+git clone https://aur.archlinux.org/stater-git.git && cd stater && makepkg -si
+```
+
+If you are not using Arch, go ahead and build stater manually.
+
+#### Builing stater
 
 #### Requirements
 
 - git
 - gcc, make
-- X11 libraries
-
-#### Builing stater
+- alsa-lib, mesa, libx11, libxrandr, libxi, libxcursor, libxinerama
 
 Cloning the repository
 ```sh
@@ -50,6 +59,8 @@ sudo make install
 ```
 
 ### Windows
+
+There is no installer for Windows, go ahead and build stater manually.
 
 #### Requirements
 
