@@ -30,8 +30,8 @@
 #define _CONSTANTS_H_
 
 const char g_app_title[] = "stater";
-const int g_screen_width = 800;
-const int g_screen_height = 450;
+const int g_window_min_width = 550;
+const int g_window_min_height = 315;
 
 // Colors (defined as macros so raylib.h does'nt need to be included)
 #define COLOR_DEFAULT_BLACK (Color){35, 35, 35, 255}

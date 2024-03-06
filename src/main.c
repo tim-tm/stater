@@ -34,6 +34,9 @@
 #include <string.h>
 #include <math.h>
 
+static int screen_width = 800;
+static int screen_height = 450;
+
 static char* task_name = NULL;
 
 static float* data;
@@ -97,11 +100,15 @@ int main(int argc, char** argv) {
     data_average_diff /= data_count;
     fclose(fp);
 
-    InitWindow(g_screen_width, g_screen_height, g_app_title);
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    InitWindow(screen_width, screen_height, g_app_title);
     SetTargetFPS(60);
+    SetWindowMinSize(g_window_min_width, g_window_min_height);
+
     while (!WindowShouldClose()) {
         UpdateDrawFrame();
     }
+
     CloseWindow();
     free(task_name);
     free(data);
@@ -115,8 +122,8 @@ static void UpdateDrawFrame(void) {
 
         const int rect_x = 5;
         const int rect_y = 45;
-        const int rect_w = 500;
-        const int rect_h = 250;
+        const int rect_w = screen_width*0.8f;
+        const int rect_h = screen_height*0.5f;
         DrawRectangleLines(rect_x, rect_y, rect_w, rect_h, LIGHTGRAY);
         for (long long x = 0; x < data_count; ++x) {
             /*DrawCircle(rect_x+((float)rect_w/(float)data_count)*x,
@@ -181,4 +188,6 @@ static void UpdateDrawFrame(void) {
             DrawText(value_text, text_x, rect_y+rect_h+5, 12, RED);
         }
     EndDrawing();
+    screen_width = GetScreenWidth();
+    screen_height = GetScreenHeight();
 }
