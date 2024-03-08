@@ -39,7 +39,6 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) $(DEFINES) $(INCLUDES) -c $< -o $@
 
 setup:
-	git submodule update --init
 	make $(MAKEFLAGS) -C lib/raylib/src
 	mkdir -p $(BUILDDIR)
 
