@@ -3,6 +3,7 @@ CFLAGS=-Wall -Wextra -pedantic
 DEFINES=
 INCLUDES=-I./lib/raylib/src/
 LIBS=-L./lib/raylib/src/ -lraylib -lm
+MAKEFLAGS=-j$(shell nproc)
 
 SRCDIR=./src
 BUILDDIR=./build
@@ -23,6 +24,7 @@ LIBS += -lopengl32 -lgdi32 -lwinmm
 
 INSTALLDIR=C:\Windows\System32\
 
+MAKEFLAGS=
 BINARYNAME=stater.exe
 endif
 
@@ -38,7 +40,7 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 
 setup:
 	git submodule update --init
-	make -C lib/raylib/src
+	make $(MAKEFLAGS) -C lib/raylib/src
 	mkdir -p $(BUILDDIR)
 
 clean:
@@ -47,9 +49,10 @@ clean:
 
 destroy:
 	rm -rf $(BUILDDIR)
-	make -C lib/raylib/src clean
+	make $(MAKEFLAGS) -C lib/raylib/src clean
 
 install:
+	# this will also work on windows beacuse of w64devkit
 	cp $(BINARY) $(INSTALLDIR)
 
 uninstall:
