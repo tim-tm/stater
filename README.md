@@ -23,7 +23,8 @@ or
 git clone https://aur.archlinux.org/stater-git.git && cd stater && makepkg -si
 ```
 
-If you are not using Arch, go ahead and build stater manually.
+If you are not using Arch, you may want to take a look at the [latest release](https://github.com/tim-tm/stater/releases/latest), which contains install instructions.
+You can also build stater manually.
 
 #### Builing stater
 
