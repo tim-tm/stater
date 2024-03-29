@@ -12,6 +12,8 @@ https://github.com/tim-tm/stater/assets/43402731/58669aa8-f534-4a7c-8ddb-6eadac2
 
 ## Getting started
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/stater.svg)](https://repology.org/project/stater/versions)
+
 ### Linux
 
 Arch-Linux (AUR)
