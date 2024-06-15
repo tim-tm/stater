@@ -12,6 +12,8 @@ https://github.com/tim-tm/stater/assets/43402731/58669aa8-f534-4a7c-8ddb-6eadac2
 
 ## Getting started
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/stater.svg)](https://repology.org/project/stater/versions)
+
 ### Linux
 
 Arch-Linux (AUR)
@@ -23,7 +25,8 @@ or
 git clone https://aur.archlinux.org/stater-git.git && cd stater && makepkg -si
 ```
 
-If you are not using Arch, go ahead and build stater manually.
+If you are not using Arch, you may want to take a look at the [latest release](https://github.com/tim-tm/stater/releases/latest), which contains install instructions.
+You can also build stater manually.
 
 #### Builing stater
 
